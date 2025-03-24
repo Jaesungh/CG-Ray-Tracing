@@ -14,7 +14,9 @@ float ambientStrength = 0.1f;
 float diffuseStrength = 0.8f;
 float specularStrength = 0.5f;
 ```
+
 Changes to these Plane() and Sphere() would alter the coordinates, size, and color. 
+
 For example spheres can result in white (I may have misunderstood the one of the clause on slide for assignment incorrect) :
 
 ![image](https://github.com/user-attachments/assets/9bac44c1-e83e-4123-8b3d-1f38288a593b)
@@ -38,27 +40,26 @@ Tested on Visual Studio 2022.
 You may compile using preffered c++ compiler with OpenGL support.
 
 ## Short description of the code
-#### classes :
+### classes :
 
-##### Ray :
+#### Ray :
 Ray ()  : default constructor initializing origin and direction to (0,0,0) and Ray(const vec3& o, const vec3& d) specifying origin and direction
-##### Camera : 
+#### Camera : 
 Camera () : Camera parameters including eye position, view, dimensions, and resolution.
 Ray generateRay(int i, int j) : Generates ray for the given pixel coords.
-##### Plane :
+#### Plane :
 Plane(const vec3& n, float d, const vec3& col) : Initialize a plane.
 bool intersect(const Ray& ray, float& t) : Checks for intersection with a given ray.
-##### Sphere :
+#### Sphere :
 Sphere(const vec3& c, float r, const vec3& col) : Initialize a sphere
 bool intersect(const Ray& ray, float& t) : Check for intersection with a given ray and spheres.
-##### Light :
+#### Light :
 Light(const vec3& pos, const vec3& col): Set light position and color.
-##### Scene : 
+#### Scene : 
 Scene() : Initialiez the scene with plane and spheres.
 bool intersect(const Ray& ray, float& t, vec3& color, vec3& normal) : Checks for intersection of ray-object.
 
-#### Functions :
-
+### Functions :
 phongShading : computes lighting using the Phong model. 
 render : creates the final image by casting rays and computing colors. Over each pixel, generating a ray and check for intersections.
 

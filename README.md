@@ -27,8 +27,11 @@ For example spheres can result in white (I may have misunderstood the one of the
 
 ## Compilation & run instructions 
 Tested on Visual Studio 2022. 
+
 ![image](https://github.com/user-attachments/assets/2827364c-67cc-45e5-bc3b-4ee531f562d2)
+
 -Build - Build Solution (F7)
+
 -Debug - Start Debugging (F5)
 
 You may compile using preffered c++ compiler with OpenGL support.
@@ -59,7 +62,11 @@ phongShading : computes lighting using the Phong model.
 render : creates the final image by casting rays and computing colors. Over each pixel, generating a ray and check for intersections.
 
 ## References : 
+
 https://learnopengl.com/
+
 https://github.com/ADoublePlus/Ray-Tracing
+
 https://github.com/genericalexacc/RayTracing
+
 https://raytracing.github.io/

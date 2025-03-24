@@ -10,19 +10,20 @@ Light in this result is at position of (15,15,15) so you can alter the light by 
 ```
 These are phong model coefficients that I applied on this result, altering it could get different result of image.   
 ```c++
-	float ambientStrength = 0.1f;
-	float diffuseStrength = 0.8f;
-	float specularStrength = 0.5f;
+float ambientStrength = 0.1f;
+float diffuseStrength = 0.8f;
+float specularStrength = 0.5f;
 ```
 Changes to these Plane() and Sphere() would alter the coordinates, size, and color. 
 For example spheres can result in white (I may have misunderstood the one of the clause on slide for assignment incorrect) :
+
 ![image](https://github.com/user-attachments/assets/9bac44c1-e83e-4123-8b3d-1f38288a593b)
 
 ```c++
-		planes.push_back(Plane(vec3(0.0f, 1.0f, 0.0f), -2.0f, vec3(0.5f, 0.5f, 0.5f))); // plane located at y = -2 (gray)
-		spheres.push_back(Sphere(vec3(-4.0f, 0.0f, -7.0f), 1.0f, vec3(1.0f, 0.0f, 0.0f))); // s1 (red)
-		spheres.push_back(Sphere(vec3(0.0f, 0.0f, -7.0f), 2.0f, vec3(0.0f, 1.0f, 0.0f))); // s2 (green)
-		spheres.push_back(Sphere(vec3(4.0f, 0.0f, -7.0f), 1.0f, vec3(0.0f, 0.0f, 1.0f))); // s3 (blue)
+planes.push_back(Plane(vec3(0.0f, 1.0f, 0.0f), -2.0f, vec3(0.5f, 0.5f, 0.5f))); // plane located at y = -2 (gray)
+spheres.push_back(Sphere(vec3(-4.0f, 0.0f, -7.0f), 1.0f, vec3(1.0f, 0.0f, 0.0f))); // s1 (red)
+spheres.push_back(Sphere(vec3(0.0f, 0.0f, -7.0f), 2.0f, vec3(0.0f, 1.0f, 0.0f))); // s2 (green)
+spheres.push_back(Sphere(vec3(4.0f, 0.0f, -7.0f), 1.0f, vec3(0.0f, 0.0f, 1.0f))); // s3 (blue)
 ```
 
 ## Compilation & run instructions 

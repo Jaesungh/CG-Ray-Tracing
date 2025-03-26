@@ -113,31 +113,6 @@ public:
 	Light(const vec3& pos, const vec3& col) : position(pos), color(col) {}
 };
 
-Light light(vec3(15, 15, 15), vec3(1, 1, 1)); // White light at position (15, 15, 15)
-// phong shading
-vec3 phongShading(const vec3& point, const vec3& normal, const vec3& viewDir, const vec3& lightDir, const vec3& lightColor, const vec3& objectColor) {
-	// Phong model coefficients
-	float ambientStrength = 0.1f;
-	float diffuseStrength = 0.8f;
-	float specularStrength = 0.5f;
-	int shininess = 32;
-
-	// Ambient
-	vec3 ambient = ambientStrength * lightColor;
-
-	// Diffuse
-	float diff = glm::max(dot(normal, lightDir), 0.0f);
-	vec3 diffuse = diffuseStrength * diff * lightColor;
-
-	// Specular 
-	vec3 reflectDir = reflect(-lightDir, normal);
-	float spec = pow(glm::max(dot(viewDir, reflectDir), 0.0f), shininess);
-	vec3 specular = specularStrength * spec * lightColor;
-
-	// Combine
-	vec3 color = (ambient + diffuse + specular) * objectColor;
-	return color;
-}
 
 class Scene { //class scene
 public:
@@ -145,10 +120,10 @@ public:
 	vector<Sphere> spheres;
 
 	Scene() {
-		planes.push_back(Plane(vec3(0.0f, 1.0f, 0.0f), -2.0f, vec3(0.5f, 0.5f, 0.5f))); // plane located at y = -2 (gray)
-		spheres.push_back(Sphere(vec3(-4.0f, 0.0f, -7.0f), 1.0f, vec3(1.0f, 0.0f, 0.0f))); // s1 (red)
-		spheres.push_back(Sphere(vec3(0.0f, 0.0f, -7.0f), 2.0f, vec3(0.0f, 1.0f, 0.0f))); // s2 (green)
-		spheres.push_back(Sphere(vec3(4.0f, 0.0f, -7.0f), 1.0f, vec3(0.0f, 0.0f, 1.0f))); // s3 (blue)
+		planes.push_back(Plane(vec3(0.0f, 1.0f, 0.0f), 2.0f, vec3(0.5f, 0.5f, 0.5f))); // plane located at y = -2 (gray)
+		spheres.push_back(Sphere(vec3(-4.0f, 0.0f, -7.0f), 1.0f, vec3(1.0f, 1.0f, 1.0f))); // s1 (red)
+		spheres.push_back(Sphere(vec3(0.0f, 0.0f, -7.0f), 2.0f, vec3(1.0f, 1.0f, 1.0f))); // s2 (green)
+		spheres.push_back(Sphere(vec3(4.0f, 0.0f, -7.0f), 1.0f, vec3(1.0f, 1.0f, 1.0f))); // s3 (blue)
 	}
 
 	bool intersect(const Ray& ray, float& t, vec3& color, vec3& normal) {
@@ -195,20 +170,18 @@ void render()
 			// --- Implement your code here to generate the image
 			// ---------------------------------------------------
 			Ray ray = camera.generateRay(i, j);
-			float t;            
-			
-			vec3 color(0, 0, 0); // black
+			float t;
+			vec3 color;
 			vec3 normal;
+
 			if (scene.intersect(ray, t, color, normal)) {
-				vec3 point = ray.origin + t * ray.direction;
-				vec3 viewDir = normalize(camera.eye - point);
-				vec3 lightDir = normalize(light.position - point);
-				color = phongShading(point, normal, viewDir, lightDir, light.color, color);
-				OutputImage.push_back(color.r);
-				OutputImage.push_back(color.g);
-				OutputImage.push_back(color.b);
+				// Set all intersected pixels to white (1,1,1)
+				OutputImage.push_back(1.0f);
+				OutputImage.push_back(1.0f);
+				OutputImage.push_back(1.0f);
 			}
 			else {
+				// Set non-intersected pixels to black (0,0,0)
 				OutputImage.push_back(0.0f);
 				OutputImage.push_back(0.0f);
 				OutputImage.push_back(0.0f);

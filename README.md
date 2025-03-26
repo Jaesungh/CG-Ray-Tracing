@@ -1,12 +1,13 @@
 # CG-Ray Tracing
 
 In this assignment, I implemented simple ray tracer, rendering scene cosisting of a plane and three spheres.
-## result 
+## Result 
 Result image :
+
 By default, the code outputs a black-and-white image:
 - **White** for pixels where the ray intersects an object
 - **Black** otherwise
-- 
+ 
 ![image](https://github.com/user-attachments/assets/d5563686-0ef1-4161-9472-4232aaace29c)
 
 It may look slightly off-center locating at left to center due to different ratio between window and camera. 
